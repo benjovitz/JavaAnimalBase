@@ -22,6 +22,7 @@ public class Animal {
         return name + " the " + desc + " " + type + ", age " + age + ", weight " + weight +"kg";
     }
 
-
-
+   public String animalCSV(){
+        return name+";"+desc+";"+type+";"+age+";"+weight+"\n";
+   }
 }
