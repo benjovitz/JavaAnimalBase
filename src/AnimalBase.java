@@ -1,7 +1,9 @@
+import javax.sound.sampled.Line;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class AnimalBase {
@@ -63,7 +65,18 @@ public class AnimalBase {
 
 
     public void loadDatabase() throws FileNotFoundException {
-        Scanner sc = new Scanner(new File("animals.csv"));
+        Scanner fileScanner = new Scanner(new File("animals.csv"));
+        while(fileScanner.hasNextLine()) {
+            String name = fileScanner.nextLine();
+            Scanner input =  new Scanner(System.in).useDelimiter(";").useLocale(Locale.ENGLISH);
+            String desc = input.next();
+            String type = input.next();
+            int age = input.nextInt();
+            double weight = input.nextDouble();
+            Animal animal = new Animal(name, desc, type, age, weight);
+            System.out.println(animal);
+            animals.add(animal);
+        }
     }
 
     public void saveDatabase() throws FileNotFoundException {
