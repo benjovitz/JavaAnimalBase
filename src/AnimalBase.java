@@ -66,9 +66,10 @@ public class AnimalBase {
 
     public void loadDatabase() throws FileNotFoundException {
         Scanner fileScanner = new Scanner(new File("animals.csv"));
-        while(fileScanner.hasNextLine()) {
-            String name = fileScanner.nextLine();
-            Scanner input =  new Scanner(System.in).useDelimiter(";").useLocale(Locale.ENGLISH);
+        while(fileScanner.hasNext()) {
+            String fileLine = fileScanner.nextLine();
+            Scanner input =  new Scanner(fileLine).useDelimiter(";").useLocale(Locale.ENGLISH);
+            String name = input.next();
             String desc = input.next();
             String type = input.next();
             int age = input.nextInt();
@@ -77,6 +78,7 @@ public class AnimalBase {
             System.out.println(animal);
             animals.add(animal);
         }
+
     }
 
     public void saveDatabase() throws FileNotFoundException {
